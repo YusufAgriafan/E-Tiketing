@@ -76,7 +76,7 @@
         </div>
 
         <p>Setelah transfer, harap kirimkan bukti pembayaran ke link berikut. Jika ada pertanyaan, jangan ragu untuk
-            menghubungi kami melalui chat WA: <strong>+6287733354000 - IVO</strong>
+            menghubungi kami melalui chat WA: <strong>+628512345678 - Panitia</strong>
         </p>
         <p>
             <a href="" class="button"

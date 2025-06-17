@@ -183,7 +183,7 @@
                             </table>
                             <br>
                             <p>Silakan cek email untuk melihat detail tujuan transfer pembayaran dan konfirmasi pembayaran.</p>
-                            <p>Jika tidak menerima email dalam beberapa menit, harap periksa folder spam atau hubungi panitia untuk bantuan lebih lanjut di <strong>Contact: +6287733354000 - IVO</strong></p>
+                            <p>Jika tidak menerima email dalam beberapa menit, harap periksa folder spam atau hubungi panitia untuk bantuan lebih lanjut di <strong>Contact: +628512345678 - Panitia</strong></p>
                             <p>Terima kasih!</p>`,
                     icon: 'success',
                     confirmButtonText: 'OK',
