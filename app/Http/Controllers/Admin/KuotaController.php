@@ -3,16 +3,16 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Kuota;
-use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\User;
 
 class KuotaController extends Controller
 {
     public function kuota()
     {
         $kuota = Kuota::paginate(10);
-        $user = User::where('status', 'lunas')->get('jumlah_peserta')->sum('jumlah_peserta');
+        $user = User::get('jumlah_peserta')->sum('jumlah_peserta');
         return view('admin.kuota.index', compact('kuota', 'user'));
     }
 

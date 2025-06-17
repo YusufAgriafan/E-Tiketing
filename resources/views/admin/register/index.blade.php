@@ -53,7 +53,10 @@
                                         <td>{{ $item->email }}</td>
                                         <td>{{ $item->dewasa }}</td>
                                         <td>{{ $item->anak }}</td>
-                                        <td>{{ $item->jumlah_peserta }}</td>
+                                        <td>
+                                            {{ $item->jumlah_peserta }}
+                                          
+                                        </td>
                                         <td>{{ $item->no_telepon }}</td>
                                         <td>{{ $item->harga }}</td>
                                         <td>{{ $item->invoice }}</td>
@@ -97,6 +100,9 @@
                 </div>
             </div>
         </div>
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+        <script type="module" src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+        <script type="module" src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
         <script>
             let isModalOpen = false;
 
@@ -108,23 +114,39 @@
                 isModalOpen = false;
             });
 
+            $(document).ready(function() {
+                $('#dataTable').DataTable();
+            });
+
             function refreshTable() {
+                const route = `{{ route('dashboard.register.table') }}`;
                 if (!isModalOpen) {
-                    fetch('{{ route('dashboard.register.table') }}')
+                    // Destroy existing DataTable instance if exists
+                    if ( $.fn.DataTable.isDataTable('#dataTable') ) {
+                        $('#dataTable').DataTable().destroy();
+                    }
+                    fetch(route)
                         .then(response => response.text())
                         .then(data => {
                             const parser = new DOMParser();
                             const doc = parser.parseFromString(data, 'text/html');
                             const newTableBody = doc.querySelector('#table-body').innerHTML;
                             document.querySelector('#table-body').innerHTML = newTableBody;
+                            
+                            // Reinitialize Bootstrap modals after content update
+                            const modalTriggers = document.querySelectorAll('[data-bs-toggle="modal"]');
+                            modalTriggers.forEach(trigger => {
+                                new bootstrap.Modal(document.querySelector(trigger.dataset.bsTarget));
+                            });
+                            // Re-initialize DataTable
+                            $('#dataTable').DataTable();
                         });
                 }
             }
 
-            setInterval(refreshTable, 10000);
+           // setInterval(refreshTable, 10000);
         </script>
 
     </div>
 
 </x-layout>
-

@@ -41,6 +41,11 @@ class User extends Authenticatable
         return $this->hasMany(Jaket::class);
     }
 
+    public function participants()
+    {
+        return $this->hasMany(Participant::class);
+    }
+
     protected static function boot()
     {
         parent::boot();

@@ -22,6 +22,17 @@
 				<input type="number" name="jumlah_peserta" class="form-control" value="{{ $item->jumlah_peserta }}" disabled>
 			</div>
 			<div class="mb-3">
+				<div class="row">
+					<div class="col-md-12 d-flex flex-wrap gap-2">
+						@if ($item->participants->isNotEmpty())
+							@foreach($item->participants as $participant)
+								<div class="p-2 rounded bg-light">{{ $participant->name }} ({{ $participant->type }})</div>
+							@endforeach
+						@endif
+					</div>
+				</div>
+			</div>
+			<div class="mb-3">
 				<label for="harga" class="form-label">Harga</label>
 				<input type="number" name="harga" class="form-control" value="{{ $item->harga }}" disabled>
 			</div>

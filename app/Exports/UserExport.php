@@ -11,24 +11,29 @@ class UserExport implements FromCollection, WithTitle, WithHeadings
 {
     public function collection()
     {
-        return User::select(
-            'id',
-            'nama',
-            'email',
-            'no_telepon',
-            'harga',
-            'jumlah_peserta',
-            'dewasa',
-            'anak',
-            'status',
-            'tanggal_lunas',
-            \DB::raw('COALESCE(jersei, 0) as jersei'),
-            \DB::raw('COALESCE(kapal, 0) as kapal'),
-            \DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d %H:%i:%s') as created_at"),
-            \DB::raw("DATE_FORMAT(updated_at, '%Y-%m-%d %H:%i:%s') as updated_at")
-        )
+        return User::with('participants')
+            ->select(
+                'id',
+                'nama',
+                'email',
+                'no_telepon',
+                'harga',
+                'jumlah_peserta',
+                'dewasa',
+                'anak',
+                'status',
+                'tanggal_lunas',
+                \DB::raw('COALESCE(jersei, 0) as jersei'),
+                \DB::raw('COALESCE(kapal, 0) as kapal'),
+                \DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d %H:%i:%s') as created_at"),
+                \DB::raw("DATE_FORMAT(updated_at, '%Y-%m-%d %H:%i:%s') as updated_at")
+            )
             ->get()
             ->map(function ($item) {
+                $participants = $item->participants->map(function ($participant) {
+                    return $participant->name . ' (' . $participant->type . ')';
+                })->join(', ');
+
                 return [
                     'id' => $item->id,
                     'nama' => $item->nama,
@@ -42,6 +47,7 @@ class UserExport implements FromCollection, WithTitle, WithHeadings
                     'tanggal_lunas' => $item->tanggal_lunas,
                     'jersei' => $item->jersei,
                     'kapal' => $item->kapal,
+                    'participants' => $participants,
                     'created_at' => substr($item->created_at, 0, 19),
                     'updated_at' => substr($item->updated_at, 0, 19)
                 ];
@@ -60,14 +66,15 @@ class UserExport implements FromCollection, WithTitle, WithHeadings
             'Nama',
             'Email',
             'No Telepon',
-            'Total Harga',
+            'Harga',
             'Jumlah Peserta',
             'Dewasa',
             'Anak',
             'Status',
             'Tanggal Lunas',
-            'Jersey',
+            'Jersei',
             'Kapal',
+            'Participants',
             'Created At',
             'Updated At'
         ];

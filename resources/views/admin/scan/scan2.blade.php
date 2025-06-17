@@ -53,7 +53,7 @@
                                         '#naik_kapal');
                                     const remainingParticipantsSpan = Swal.getPopup()
                                         .querySelector('#remaining_participants');
-
+    
                                     naikKapalInput.addEventListener('input', () => {
                                         const remaining = response.data
                                             .remaining_participants - naikKapalInput
@@ -80,7 +80,7 @@
                                 if (result.isConfirmed) {
                                     Swal.fire({
                                         title: "Konfirmasi",
-                                        text: `Apakah Anda yakin ingin menyimpan data dengan jumlah peserta yang naik kapal sebanyak ${result.value.naik_kapal} orang?`,
+                                        text: `Apakah Anda yakin ingin menyimpan data dengan jumlah peserta sebanyak ${result.value.naik_kapal} orang?`,
                                         icon: "warning",
                                         showCancelButton: true,
                                         confirmButtonText: "Ya, simpan",

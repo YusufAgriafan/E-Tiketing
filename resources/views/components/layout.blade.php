@@ -12,7 +12,7 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 
     <title>Admin Dashboard</title>
-    <x-css/>
+    <x-css />
 
 </head>
 
@@ -55,9 +55,9 @@
         <i class="fas fa-angle-up"></i>
     </a>
 
-    <X-logout-modal></X-logout-modal>
+    {{-- <X-logout-modal></X-logout-modal> --}}
 
-    <x-js/>
+    <x-js />
 
 </body>
 

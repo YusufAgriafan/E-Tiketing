@@ -55,15 +55,16 @@
                                                 $ukuranData = json_decode($item->tshirt_data, true);
                                                 $ukuranSummary = [];
                                                 foreach ($ukuranData as $ukuran) {
-                                                    if (isset($ukuranSummary[$ukuran['ukuran']])) {
-                                                        $ukuranSummary[$ukuran['ukuran']] += $ukuran['nama'];
-                                                    } else {
-                                                        $ukuranSummary[$ukuran['ukuran']] = $ukuran['nama'];
+                                                    $ukuranKey = isset($ukuran['ukuran']) ? $ukuran['ukuran'] : '-';
+                                                    $namaValue = isset($ukuran['nama']) ? $ukuran['nama'] : '-';
+                                                    if (!isset($ukuranSummary[$ukuranKey])) {
+                                                        $ukuranSummary[$ukuranKey] = [];
                                                     }
+                                                    $ukuranSummary[$ukuranKey][] = $namaValue;
                                                 }
                                             @endphp
-                                            @foreach ($ukuranSummary as $ukuran => $nama)
-                                                <span>{{ $ukuran }} ({{ $nama }})</span><br>
+                                            @foreach ($ukuranSummary as $ukuran => $namaList)
+                                                <span>{{ $ukuran }} ({{ implode(', ', $namaList) }})</span><br>
                                             @endforeach
                                         </td>
                                         <td>{{ $item->updated_at ?? '-' }}</td>

@@ -46,16 +46,28 @@ class MainController extends Controller
                     'nama' => 'required|string|max:255',
                     'email' => 'required|string|email|max:255',
                     'no_telepon' => 'required|string|max:15',
-                    'dewasa' => 'required|numeric|min:1',
-                    'anak' => 'required|numeric|min:0'
-                ],
-                [
-                    'dewasa.min' => 'Jumlah peserta dewasa minimal adalah 1.',
-                    'anak.min' => 'Jumlah anak minimal adalah 0.'
+                    'participant_name.*' => 'required|string|max:255',
+                    'participant_type.*' => 'required|in:dewasa,anak'
                 ]
             );
 
-            $validatedData['jumlah_peserta'] = $validatedData['dewasa'] + $validatedData['anak'];
+            $participantTypes = $request->input('participant_type');
+            $participantNames = $request->input('participant_name');
+            
+            $dewasaCount = 0;
+            $anakCount = 0;
+            foreach ($participantTypes as $type) {
+                if ($type === 'dewasa') $dewasaCount++;
+                if ($type === 'anak') $anakCount++;
+            }
+
+            if ($dewasaCount < 1) {
+                return back()->with('error', 'Jumlah peserta dewasa minimal adalah 1.');
+            }
+
+            $validatedData['dewasa'] = $dewasaCount;
+            $validatedData['anak'] = $anakCount;
+            $validatedData['jumlah_peserta'] = $dewasaCount + $anakCount;
 
             $kuota = Kuota::where('status', true)->orderBy('created_at', 'asc')->first();
             if (!$kuota) {
@@ -82,13 +94,32 @@ class MainController extends Controller
             $newInvoiceNumber = $lastInvoiceNumber + 1;
             $validatedData['invoice'] = 'INV-' . str_pad($newInvoiceNumber, 6, '0', STR_PAD_LEFT);
 
-            $user = User::create($validatedData);
+            $user = User::create([
+                'nama' => $validatedData['nama'],
+                'email' => $validatedData['email'],
+                'no_telepon' => $validatedData['no_telepon'],
+                'dewasa' => $validatedData['dewasa'],
+                'anak' => $validatedData['anak'],
+                'jumlah_peserta' => $validatedData['jumlah_peserta'],
+                'invoice' => $validatedData['invoice'],
+                'harga' => $hargaUnik,
+                'status' => 'belum'
+            ]);
+
+            // Save participants
+            foreach ($participantTypes as $index => $type) {
+                $user->participants()->create([
+                    'name' => $participantNames[$index],
+                    'type' => $type
+                ]);
+            }
 
             session([
                 'id' => $user->id,
                 'nama' => $user->nama,
                 'email' => $user->email,
-                'jumlah_peserta' => $user->jumlah_peserta
+                'jumlah_peserta' => $user->jumlah_peserta,
+                'invoice' => $user->invoice
             ]);
 
             return redirect()->route('tshirt');

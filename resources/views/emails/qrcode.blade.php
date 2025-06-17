@@ -23,7 +23,6 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
-
         h2 {
             color: #4CAF50;
             font-size: 24px;
@@ -51,7 +50,7 @@
 <body>
     <div class="container">
         <p>Yth. <strong>{{ $user->nama }}</strong>,</p>
-        <p>Terima kasih atas pembayaran Anda. Pembayaran Anda telah
+        <p>Terima kasih atas pembayaran Anda untuk acara Event. Pembayaran Anda telah
             kami terima.</p><br />
 
         <img src="{{ asset('storage/' . $qrCodePath) }}" alt="QR Code"><br />
@@ -78,3 +77,4 @@
 </body>
 
 </html>
+

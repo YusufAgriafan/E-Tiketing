@@ -16,7 +16,7 @@
     <div class="container my-5">
         <h1 class="text-center title">Form Pemilihan Jersey</h1>
         <p class="text-center text-muted sub-title">Panduan Ukuran Jersey</p>
-        <div class="size-guide mb-5">
+        {{-- <div class="size-guide mb-5">
             <div class="d-flex align-items-stretch">
                 <img src="{{ asset('/template/img/sizePutra.png ') }}" alt="Chart Size Putra"
                     class="event-image-tshirt" />
@@ -29,7 +29,7 @@
                 <img src="{{ asset('/template/img/sizeAnak.png ') }}" alt="Chart Size Anak"
                     class="event-image-tshirt" />
             </div>
-        </div>
+        </div> --}}
         <div class="form-container-tshirt">
             <form class="w-100" id="tshirtForm" method="POST" action="{{ route('tshirt.store') }}">
                 @csrf
@@ -47,21 +47,7 @@
                             <label class="form-label">Ukuran</label>
                             <div class="custom-select">
                                 <select class="form-control ukuran">
-                                    <option>Putra - S</option>
-                                    <option>Putra - M</option>
-                                    <option>Putra - L</option>
-                                    <option>Putra - XL</option>
-                                    <option>Putra - 2XL</option>
-                                    <option>Putra - 3XL</option>
-                                    <option>Putri - S</option>
-                                    <option>Putri - M</option>
-                                    <option>Putri - L</option>
-                                    <option>Putri - XL</option>
-                                    <option>Putri - 2XL</option>
-                                    <option>Putri - 3XL</option>
-                                    <option>Anak - M</option>
-                                    <option>Anak - L</option>
-                                    <option>Anak - XL</option>
+                                    <option>XL</option>
                                 </select>
                             </div>
                         </div>
@@ -89,22 +75,7 @@
                     <label class="form-label">Ukuran</label>
                     <div class="custom-select">
                         <select class="form-control ukuran">
-                            <option disabled selected>Pilih Ukuran</option>
-                                <option>Putra - S</option>
-                                <option>Putra - M</option>
-                                <option>Putra - L</option>
-                                <option>Putra - XL</option>
-                                <option>Putra - 2XL</option>
-                                <option>Putra - 3XL</option>
-                                <option>Putri - S</option>
-                                <option>Putri - M</option>
-                                <option>Putri - L</option>
-                                <option>Putri - XL</option>
-                                <option>Putri - 2XL</option>
-                                <option>Putri - 3XL</option>
-                                <option>Anak - M</option>
-                                <option>Anak - L</option>
-                                <option>Anak - XL</option>
+                            <option>XL</option>
                         </select>
                     </div>
                 </div>
@@ -183,7 +154,7 @@
                             </table>
                             <br>
                             <p>Silakan cek email untuk melihat detail tujuan transfer pembayaran dan konfirmasi pembayaran.</p>
-                            <p>Jika tidak menerima email dalam beberapa menit, harap periksa folder spam atau hubungi panitia untuk bantuan lebih lanjut di <strong>Contact: +628512345678 - Panitia</strong></p>
+                            <p>Jika tidak menerima email dalam beberapa menit, harap periksa folder spam atau hubungi panitia untuk bantuan lebih lanjut di <strong>Contact: +6285123456789 - Panitia</strong></p>
                             <p>Terima kasih!</p>`,
                     icon: 'success',
                     confirmButtonText: 'OK',

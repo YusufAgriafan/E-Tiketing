@@ -15,9 +15,8 @@
     <x-sidebar-link href="{{ route('dashboard') }}" icon="fa-tachometer-alt" :active="request()->is('dashboard')">Dashboard</x-sidebar-link>
     <x-sidebar-link href="{{ route('dashboard.kuota') }}" icon="fa-table" :active="request()->is('dashboard/kuota')">Kuota</x-sidebar-link>
     <x-sidebar-link href="{{ route('dashboard.jaket') }}" icon="fas fa-tshirt" :active="request()->is('dashboard/jaket')">Jersey</x-sidebar-link>
-    <x-sidebar-link href="{{ route('dashboard.tiket') }}" icon="fas fa-ticket-alt" :active="request()->is('dashboard/tiket')">Tiket</x-sidebar-link>
-    <x-sidebar-link href="{{ route('dashboard.bukti-bayar') }}" icon="fas fa-file-image" :active="request()->is('dashboard/bukti-bayar')">Bukti
-        Pembayaran</x-sidebar-link>
+    <x-sidebar-link href="{{ route('dashboard.tiket') }}" icon="fas fa-ticket-alt"
+        :active="request()->is('dashboard/tiket')">Tiket</x-sidebar-link>
 
     <!-- Divider -->
     <hr class="sidebar-divider">
@@ -34,13 +33,13 @@
     <x-sidebar-link href="{{ route('dashboard.export') }}" icon="fa-download" :active="request()->is('dashboard/scanner/2')">Export
         Excel</x-sidebar-link>
 
-    <form method="POST" action="{{ route('logout') }}">
+    {{-- <form method="POST" action="{{ route('logout') }}">
         @csrf
         <x-sidebar-link href="#" icon="fa-sign-out-alt"
             onclick="event.preventDefault(); this.closest('form').submit();">
             Logout
         </x-sidebar-link>
-    </form>
+    </form> --}}
 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
@@ -52,4 +51,3 @@
 
 </ul>
 <!-- End of Sidebar -->
-

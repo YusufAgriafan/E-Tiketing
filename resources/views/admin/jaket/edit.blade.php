@@ -18,10 +18,11 @@
                         $ukuranData = json_decode($item->tshirt_data, true);
                         $ukuranSummary = [];
                         foreach ($ukuranData as $ukuran) {
+                            $namaValue = isset($ukuran['nama']) ? $ukuran['nama'] : null;
                             if (isset($ukuranSummary[$ukuran['ukuran']])) {
-                                $ukuranSummary[$ukuran['ukuran']] += $ukuran['nama'];
+                                $ukuranSummary[$ukuran['ukuran']] += $namaValue;
                             } else {
-                                $ukuranSummary[$ukuran['ukuran']] = $ukuran['nama'];
+                                $ukuranSummary[$ukuran['ukuran']] = $namaValue;
                             }
                         }
                     @endphp
@@ -46,4 +47,3 @@
         </form>
     </x-modal>
 @endforeach
-

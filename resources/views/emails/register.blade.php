@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Konfirmasi Pendaftaran</title>
+    <title>Konfirmasi Pendaftaran Event</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -65,18 +65,18 @@
 <body>
     <div class="container">
         <p>Yth. <strong>{{ $user->nama }}</strong>,</p>
-        <p>Terima kasih telah melakukan registrasi. Untuk
+        <p>Terima kasih telah melakukan registrasi untuk acara Event. Untuk
             menyelesaikan proses pendaftaran, silakan melakukan transfer biaya registrasi ke rekening berikut:</p>
 
         <div class="bank-info">
             <p><strong>Bank:</strong> Bank Rakyat Indonesia</p>
             <p><strong>No. Rekening:</strong> 1234567890</p>
-            <p><strong>Atas Nama:</strong> Panitia Event</p>
+            <p><strong>Atas Nama:</strong>Panitia Event</p>
             <p><strong>Jumlah:</strong> Rp {{ number_format($hargaUnik, 2, ',', '.') }}</p>
         </div>
 
         <p>Setelah transfer, harap kirimkan bukti pembayaran ke link berikut. Jika ada pertanyaan, jangan ragu untuk
-            menghubungi kami melalui chat WA: <strong>+628512345678 - Panitia</strong>
+            menghubungi kami melalui chat WA: <strong>+6285123456789 - Panitia</strong>
         </p>
         <p>
             <a href="" class="button"
@@ -95,3 +95,4 @@
 </body>
 
 </html>
+
